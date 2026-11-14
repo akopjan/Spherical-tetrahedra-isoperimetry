@@ -1,0 +1,26 @@
+module
+
+public import Sphere3.CanonicalArea
+public import Sphere3.CanonicalFaceDiskChart
+public import Sphere3.CanonicalMatrix
+public import Sphere3.CanonicalToSphere
+public import Sphere3.GnomonicHausdorffFiniteness
+public import Sphere3.GirardAlgebra
+public import Sphere3.HausdorffBiLipschitz
+public import Sphere3.NormalizedDistanceAlgebra
+public import Sphere3.StationaryEdgeAlgebra
+public import Sphere3.CanonicalFaceFiniteBridge
+public import Sphere3.CanonicalFaceGlobalLipschitz
+public import Sphere3.CanonicalFaceChartInjective
+public import Sphere3.CanonicalFaceOpenPatchProjection
+
+-- Algebraic identities for local variational geometry.
+public import Sphere3.StationarityLinearizationAlgebra
+public import Sphere3.RegularHeightLinearizationAlgebra
+public import Sphere3.StationarityKernelAngleInequality
+public import Sphere3.OrthantSecondVariationAlgebra
+public import Sphere3.AreaGradientNoncriticalAlgebra
+public import Sphere3.RegularSecondVariationSpectrumAlgebra
+
+-- Fifth-pass exact rational curvature identities for the angular kernel.
+public import Sphere3.StationarityKernelCurvatureAlgebra

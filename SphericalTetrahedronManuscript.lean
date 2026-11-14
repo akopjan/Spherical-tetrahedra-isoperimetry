@@ -1,0 +1,19 @@
+module
+
+public import Sphere3.ManuscriptEtaKernel
+public import Sphere3.ManuscriptBoundaryAreaAlgebra
+public import SphericalTetrahedron.ManuscriptCompactnessBridge
+public import Sphere3.ManuscriptCoordinateIntervals
+public import Sphere3.ManuscriptTriangleDerivativeSigns
+public import Sphere3.ManuscriptPsiIntegral
+public import SphericalTetrahedron.ManuscriptKernelGlobal
+public import SphericalTetrahedron.ManuscriptTriangleOrdering
+public import SphericalTetrahedron.ManuscriptStationaryRigidity
+public import SphericalTetrahedron.ManuscriptMeasureBridge
+public import SphericalTetrahedron.ManuscriptFirstVariation
+public import SphericalTetrahedron.ManuscriptBoundaryPerturbation
+public import SphericalTetrahedron.ManuscriptCompactness
+
+/-!
+Entry point for the manuscript proof modules imported by `Solution.lean`.
+-/

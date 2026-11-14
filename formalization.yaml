@@ -1,0 +1,85 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Isoperimetric Inequality for Spherical Tetrahedra"
+  description: >-
+    The sharp isoperimetric inequalities for tetrahedra in the unit
+    three-sphere: the regular tetrahedron uniquely minimizes surface area at a
+    fixed volume and maximizes volume at a fixed surface area.
+  authors:
+    - "Arseniy Akopyan"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Arseniy Akopyan"
+
+classification:
+  arxiv: ["math.MG", "math.DG"]
+  msc2020: ["52A40", "51M20", "53C20"]
+
+sources:
+  - title: "A global isoperimetric inequality for spherical tetrahedra"
+    authors:
+      - "Arseniy Akopyan"
+    type: "paper"
+    location: "paper/manuscript.tex"
+    relationship: "formalizes"
+    author_endorsement: "original"
+    year: 2026
+
+status:
+  scope: >-
+    Unconditional, sorry-free formalization of both global isoperimetric
+    theorems (isoperimetric_area and isoperimetric_volume) in Solution.lean,
+    including existence of fixed-area volume maximizers via hemisphere
+    compactification and boundary perturbation, Gaussian-orthant first
+    variation and Lagrange multiplier stationarity, global rigidity of
+    stationary tetrahedra, and strict Hausdorff area/volume monotonicity on
+    the regular family.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Quot.sound"
+    - "Classical.choice"
+  main_results:
+    - declaration: "isoperimetric_area"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms:
+        - "propext"
+        - "Quot.sound"
+        - "Classical.choice"
+      comparator_config: "comparator.json"
+    - declaration: "isoperimetric_volume"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms:
+        - "propext"
+        - "Quot.sound"
+        - "Classical.choice"
+      comparator_config: "comparator.json"
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["ChatGPT", "Gemini"]
+      framework: "AI-assisted Lean 4 formalization"
+      tool_setup: >-
+        Formalization and challenge development assisted by ChatGPT and Gemini.
+
+review:
+  status: "self-assessed"
+
+alignment:
+  statements:
+    - source: "A global isoperimetric inequality for spherical tetrahedra, Theorem 1.1"
+      lean: "isoperimetric_area"
+      module: "Challenge"
+      status: "proved"
+      note: "Regular tetrahedron uniquely minimizes surface area at fixed volume"
+    - source: "A global isoperimetric inequality for spherical tetrahedra, Theorem 1.2"
+      lean: "isoperimetric_volume"
+      module: "Challenge"
+      status: "proved"
+      note: "Regular tetrahedron uniquely maximizes volume at fixed surface area"
