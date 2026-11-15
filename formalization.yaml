@@ -4,9 +4,11 @@ version: "v0.4"
 project:
   name: "Isoperimetric Inequality for Spherical Tetrahedra"
   description: >-
-    The sharp isoperimetric inequalities for tetrahedra in the unit
-    three-sphere: the regular tetrahedron uniquely minimizes surface area at a
-    fixed volume and maximizes volume at a fixed surface area.
+    Sharp isoperimetric comparisons for geodesic tetrahedra in the unit
+    three-sphere: conditional on a regular tetrahedron having the same volume
+    or surface area, the regular tetrahedron uniquely minimizes surface area at
+    fixed volume and uniquely maximizes volume at fixed surface area up to
+    congruence.
   authors:
     - "Arseniy Akopyan"
   license: "Apache-2.0"
@@ -22,20 +24,36 @@ sources:
     authors:
       - "Arseniy Akopyan"
     type: "paper"
-    location: "paper/manuscript.tex"
+    location: "paper/manuscript.tex, Theorems 1.1 and 1.2"
     relationship: "formalizes"
-    author_endorsement: "original"
+    author_endorsement: "participated"
     year: 2026
+    note: >-
+      The compared Lean theorems (isoperimetric_area and isoperimetric_volume)
+      formalize the optimality and uniqueness claims of Theorems 1.1 and 1.2
+      conditionally on a given regular tetrahedron R having the prescribed
+      volume (T.volume = R.volume) or surface area (T.area = R.area), with
+      volume and area defined via Mathlib's unnormalized Hausdorff measures on
+      R^4.
 
 status:
   scope: >-
-    Unconditional, sorry-free formalization of both global isoperimetric
-    theorems (isoperimetric_area and isoperimetric_volume) in Solution.lean,
-    including existence of fixed-area volume maximizers via hemisphere
-    compactification and boundary perturbation, Gaussian-orthant first
-    variation and Lagrange multiplier stationarity, global rigidity of
-    stationary tetrahedra, and strict Hausdorff area/volume monotonicity on
-    the regular family.
+    Sorry-free formalization in Solution.lean of the two compared isoperimetric
+    theorems in Challenge.lean (isoperimetric_area and isoperimetric_volume).
+    Both compared theorems are stated conditionally on a given regular spherical
+    tetrahedron R having the same volume (T.volume = R.volume) or the same
+    surface area (T.area = R.area) as T, establishing optimality and uniqueness
+    up to congruence relative to R. Internally, Solution.lean proves existence
+    of a regular fixed-area volume maximizer matching the area of any spherical
+    tetrahedron T (regular_fixed_area_maximizer), first-variation Lagrange
+    multiplier stationarity, global rigidity of stationary tetrahedra, and
+    strict Hausdorff area/volume monotonicity along the regular family.
+    Comparator verifies the two conditional comparison theorems relative to R;
+    it does not verify per-value existence of a regular tetrahedron for every
+    prescribed volume in (0, pi^2) or surface area in (0, 4*pi), nor the
+    explicit Hausdorff-measure normalization constants relating Mathlib's
+    unnormalized Measure.hausdorffMeasure 2 and Measure.hausdorffMeasure 3 to
+    standard spherical area and volume.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -60,6 +78,25 @@ status:
         - "Classical.choice"
       comparator_config: "comparator.json"
 
+fidelity:
+  divergences: >-
+    In paper/manuscript.tex, Theorem 1.1 assumes for each tetrahedron T the
+    existence of a regular tetrahedron R with V(R) = V(T), and Theorem 1.2
+    quantifies over all prescribed surface areas A_0 in (0, 4*pi) (with
+    Section 6 showing that the regular family bijects onto the normalized volume
+    interval (0, pi^2) and area interval (0, 4*pi)). In Challenge.lean, volume
+    and area are defined via Mathlib's unnormalized Hausdorff measures
+    (Measure.hausdorffMeasure 3 and Measure.hausdorffMeasure 2 on R^4), and
+    both compared theorems (isoperimetric_area and isoperimetric_volume) take a
+    regular tetrahedron R with T.volume = R.volume or T.area = R.area as an
+    explicit hypothesis rather than asserting per-value existence over the
+    numerical intervals (0, pi^2) and (0, 4*pi). While Solution.lean internally
+    proves that every spherical tetrahedron T admits a regular tetrahedron of
+    the same surface area (regular_fixed_area_maximizer), per-value existence of
+    a regular tetrahedron for every prescribed volume and surjectivity onto the
+    normalized numerical intervals (0, pi^2) and (0, 4*pi) are not part of the
+    compared statements.
+
 automation:
   methods:
     - method: "agent"
@@ -73,13 +110,25 @@ review:
 
 alignment:
   statements:
-    - source: "A global isoperimetric inequality for spherical tetrahedra, Theorem 1.1"
+    - source: "A global isoperimetric inequality for spherical tetrahedra (paper/manuscript.tex), Theorem 1.1"
       lean: "isoperimetric_area"
       module: "Challenge"
-      status: "proved"
-      note: "Regular tetrahedron uniquely minimizes surface area at fixed volume"
-    - source: "A global isoperimetric inequality for spherical tetrahedra, Theorem 1.2"
+      status: "proved (conditional on a regular tetrahedron of equal volume)"
+      note: >-
+        Proves R.area <= T.area and (T.area = R.area <-> T.Congruent R) for any
+        spherical tetrahedron T and any regular spherical tetrahedron R assuming
+        T.volume = R.volume. Does not assert per-value existence of a regular
+        tetrahedron R for every T.volume or over the normalized volume interval
+        (0, pi^2).
+    - source: "A global isoperimetric inequality for spherical tetrahedra (paper/manuscript.tex), Theorem 1.2"
       lean: "isoperimetric_volume"
       module: "Challenge"
-      status: "proved"
-      note: "Regular tetrahedron uniquely maximizes volume at fixed surface area"
+      status: "proved (conditional on a regular tetrahedron of equal area)"
+      note: >-
+        Proves T.volume <= R.volume and (T.volume = R.volume <-> T.Congruent R)
+        for any spherical tetrahedron T and any regular spherical tetrahedron R
+        assuming T.area = R.area. Existence of a regular maximizer M with
+        M.area = T.area is proved internally in Solution.lean
+        (regular_fixed_area_maximizer), but per-value existence over the
+        normalized numerical interval A_0 in (0, 4*pi) is not part of the
+        compared statement.

@@ -12,8 +12,12 @@ public import Mathlib
 /-!
 # Isoperimetric Inequality for Spherical Tetrahedra
 
-The regular spherical tetrahedron uniquely minimizes surface area at a given
-volume and uniquely maximizes volume at a given surface area.
+Conditional isoperimetric comparisons for geodesic tetrahedra in the unit
+three-sphere: given a regular spherical tetrahedron `R` with the same
+Hausdorff volume (`T.volume = R.volume`) or surface area (`T.area = R.area`),
+`R` uniquely minimizes surface area at fixed volume and uniquely maximizes
+volume at fixed surface area up to congruence. Here `volume` and `area` are
+defined using Mathlib's unnormalized `Measure.hausdorffMeasure` on `E4`.
 -/
 
 noncomputable section
@@ -65,14 +69,20 @@ end SphericalTetrahedron
 
 open SphericalTetrahedron
 
-/-- A regular spherical tetrahedron uniquely minimizes area at fixed volume. -/
+/-- Conditional on a given regular spherical tetrahedron `R` having the same
+volume (`T.volume = R.volume`), `R` uniquely minimizes total surface area up to
+congruence, with `volume` and `area` measured by Mathlib's unnormalized
+`Measure.hausdorffMeasure`. -/
 theorem isoperimetric_area
     (T R : SphericalTetrahedron)
     (hR : R.Regular) (hV : T.volume = R.volume) :
     R.area ≤ T.area ∧ (T.area = R.area ↔ T.Congruent R) := by
   sorry
 
-/-- A regular spherical tetrahedron uniquely maximizes volume at fixed area. -/
+/-- Conditional on a given regular spherical tetrahedron `R` having the same
+surface area (`T.area = R.area`), `R` uniquely maximizes volume up to
+congruence, with `volume` and `area` measured by Mathlib's unnormalized
+`Measure.hausdorffMeasure`. -/
 theorem isoperimetric_volume
     (T R : SphericalTetrahedron)
     (hR : R.Regular) (hA : T.area = R.area) :

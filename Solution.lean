@@ -196,7 +196,10 @@ theorem regular_of_area_equality
       _ = T.volume := hVol.symm
   exact stationary_tetrahedron_regular T (volume_maximizer_is_stationary T hMaxT)
 
-/-- A regular spherical tetrahedron uniquely minimizes area at fixed volume. -/
+/-- Conditional on a given regular spherical tetrahedron `R` having the same
+volume (`T.volume = R.volume`), `R` uniquely minimizes total surface area up to
+congruence, with `volume` and `area` measured by Mathlib's unnormalized
+`Measure.hausdorffMeasure`. -/
 theorem isoperimetric_area
     (T R : SphericalTetrahedron)
     (hReg : R.Regular) (hV : T.volume = R.volume) :
@@ -240,7 +243,10 @@ theorem regular_of_volume_equality
       _ = T.volume := hVol.symm
   exact stationary_tetrahedron_regular T (volume_maximizer_is_stationary T hMaxT)
 
-/-- A regular spherical tetrahedron uniquely maximizes volume at fixed area. -/
+/-- Conditional on a given regular spherical tetrahedron `R` having the same
+surface area (`T.area = R.area`), `R` uniquely maximizes volume up to
+congruence, with `volume` and `area` measured by Mathlib's unnormalized
+`Measure.hausdorffMeasure`. -/
 theorem isoperimetric_volume
     (T R : SphericalTetrahedron)
     (hR : R.Regular) (hA : T.area = R.area) :
